@@ -1,0 +1,17 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    faker (1.4.3)
+      i18n (~> 0.5)
+    i18n (0.7.0)
+    statsd-ruby (1.2.1)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  faker
+  statsd-ruby
+
+BUNDLED WITH
+   1.10.1
