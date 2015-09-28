@@ -1,11 +1,12 @@
 #!/usr/bin/env ruby
-
 require 'redis'
+require 'faker'
+
+$redis = Redis.new(host: ENV["REDIS_HOST"])
 
 loop do
-  redis = Redis.new(host: ENV["REDIS_HOST"])
   Random.rand(10).times do
-    redis.incr :mycounter
+    $redis.rpush Faker::Lorem.word, Faker::Lorem.paragraph
   end
-  sleep 0.2
+  sleep 1
 end
