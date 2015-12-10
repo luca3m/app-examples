@@ -47,5 +47,5 @@ loop do
   if Random.rand < 0.3
   	coll.remove({ :name => name})
   end
-  sleep 0.1
+  sleep Random.rand
 end
