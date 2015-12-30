@@ -11,8 +11,10 @@ else
 end
 
 loop do
-  Random.rand(10).times do
-    $redis.rpush Faker::Lorem.word, Faker::Lorem.paragraph
-  end
+  k = Faker::Lorem.word
+  v = Faker::Lorem.paragraph
+  $redis.set k, v
+  $redis.get k
+  $redis.del k
   sleep $speed
 end
