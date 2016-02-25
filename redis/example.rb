@@ -10,5 +10,9 @@ loop do
   $redis.set k, v
   $redis.get k
   $redis.del k
-  sleep Random.rand
+  if ARGV[0]
+    sleep ARGV[0].to_f
+  else
+    sleep Random.rand
+  end
 end
