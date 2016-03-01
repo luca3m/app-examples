@@ -1,0 +1,8 @@
+redis:
+  image: redis
+client:
+  image: luca3m/redis-example
+  links:
+    - redis:redis
+  environment:
+    - REDIS_HOST=redis
