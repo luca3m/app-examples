@@ -1,0 +1,12 @@
+version: '2'
+services:
+  client:
+    build: .
+    cpu_shares: 128
+    depends_on:
+     - mysql
+  mysql:
+    cpu_shares: 1024
+    image: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
