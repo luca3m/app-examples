@@ -1,0 +1,10 @@
+version: '2'
+services:
+  php:
+    build: .
+  nginx:
+    image: nginx:alpine
+    links:
+      - php
+    volumes:
+      - ./nginx-default.conf:/etc/nginx/conf.d/default.conf
