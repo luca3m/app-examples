@@ -3,7 +3,7 @@ services:
   php:
     build: .
   nginx:
-    image: nginx
+    image: nginx:alpine
     links:
       - php
     volumes:
