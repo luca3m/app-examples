@@ -1,3 +1,3 @@
-FROM java:8
+FROM java:alpine
 ADD docker-entrypoint.sh TestJMX.jar /
 ENTRYPOINT [ "/docker-entrypoint.sh" ]
