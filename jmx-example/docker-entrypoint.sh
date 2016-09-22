@@ -1,2 +1,2 @@
 #!/bin/sh
-java $JVM_OPTS -jar /TestJMX.jar
+exec java $JVM_OPTS -jar /TestJMX.jar
