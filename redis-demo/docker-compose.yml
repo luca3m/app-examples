@@ -1,5 +1,5 @@
 redis:
-  image: redis
+  image: redis:alpine
 client:
   image: luca3m/redis-example
   links:
