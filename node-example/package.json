@@ -1,0 +1,17 @@
+{
+  "name": "node-example",
+  "version": "1.0.0",
+  "description": "Node example exporting metrics via Prometheus",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Luca Marturana <lucamarturana@gmail.com>",
+  "license": "BSD-2-Clause",
+  "dependencies": {
+    "express": "^4.14.0",
+    "gc-stats": "^1.0.0",
+    "prom-client": "^6.3.0",
+    "prometheus-gc-stats": "^0.3.1"
+  }
+}
