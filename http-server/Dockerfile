@@ -1,4 +1,4 @@
-FROM coopermaa/alpine-ruby
+FROM ruby:alpine
 EXPOSE 4567
 ADD . /app
 RUN cd /app && bundle install
