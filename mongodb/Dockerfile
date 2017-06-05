@@ -1,4 +1,4 @@
-FROM coopermaa/alpine-ruby
+FROM ruby:alpine
 MAINTAINER Luca Marturana <lucamarturana@gmail.com>
 WORKDIR /code
 ADD . /code/
