@@ -1,0 +1,34 @@
+kind: Deployment
+apiVersion: extensions/v1beta1
+metadata:
+  name: stress
+  labels:
+    name: stress-deployment
+    app: demo
+spec:
+  replicas: 5
+  # selector identifies the set of Pods that this
+  # replication controller is responsible for managing
+  selector:
+    matchLabels:
+     name: stress
+     role: stressdb
+     app: demo
+  template:
+    spec:
+      containers:
+        - name: stress
+          image: luca3m/stress:latest
+          command: [ "stress", "-m", "1", "--vm-bytes", "256M", "--vm-hang", "0" ]
+          resources:
+            requests:
+              memory: 128Mi
+            limits:
+              memory: 512Mi
+    metadata:
+      labels:
+        # Important: these labels need to match the selector above
+        # The api server enforces this constraint.
+        name: stress
+        role: stressdb
+        app: demo

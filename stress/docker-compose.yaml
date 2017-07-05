@@ -1,0 +1,3 @@
+stress:
+  image: luca3m/stress
+  command: -c 1
