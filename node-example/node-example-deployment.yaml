@@ -1,0 +1,47 @@
+kind: Deployment
+apiVersion: extensions/v1beta1
+metadata:
+  name: node-example
+  labels:
+    name: node-example-deployment
+    app: demo
+  annotations:
+    prometheus.io/scrape: "true"
+spec:
+  replicas: 1
+  # selector identifies the set of Pods that this
+  # replication controller is responsible for managing
+  selector:
+    matchLabels:
+      name: node-example
+      role: http
+      app: demo
+  template:
+    spec:
+      containers:
+        - name: node-example
+          image: luca3m/node-example:latest
+          ports:
+            - containerPort: 3000
+              name: node-example
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 3000
+            initialDelaySeconds: 5
+            periodSeconds: 5
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 3000
+            initialDelaySeconds: 5
+            periodSeconds: 5
+    metadata:
+      labels:
+        # Important: these labels need to match the selector above
+        # The api server enforces this constraint.
+        name: node-example
+        role: http
+        app: demo
+      annotations:
+        prometheus.io/scrape: "true"
