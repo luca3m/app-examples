@@ -1,0 +1,24 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: failer
+spec:
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: failer
+    spec:
+      containers:
+      - name: failer
+        image: luca3m/failer
+        livenessProbe:
+          exec:
+            command: [ "cat", "/healthy" ]
+          initialDelaySeconds: 5
+          periodSeconds: 5
+        readinessProbe:
+          exec:
+            command: [ "cat", "/healthy" ]
+          initialDelaySeconds: 5
+          periodSeconds: 5
