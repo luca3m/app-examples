@@ -1,0 +1,4 @@
+version: '2'
+services:
+  gettimeofday:
+    image: luca3m/gettimeofday-stress

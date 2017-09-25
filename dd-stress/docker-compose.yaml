@@ -1,0 +1,4 @@
+version: '2'
+services:
+  dd:
+    image: luca3m/dd-stress
