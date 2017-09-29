@@ -1,0 +1,4 @@
+version: '2'
+services:
+  open-close:
+    image: luca3m/open-close-stress
