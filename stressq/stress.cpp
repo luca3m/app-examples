@@ -58,7 +58,7 @@ public:
 		memset(&server_address, 0, sizeof(server_address));     /* Zero out structure */
 		server_address.sin_family      = AF_INET;             /* Internet address family */
 		server_address.sin_addr.s_addr = 0x0100007F;   /* Server IP address */
-		server_address.sin_port        = htons(7);
+		server_address.sin_port        = htons(8080);
 
 		for(int j = 0; j < nconns; ++j)
 		{
@@ -73,9 +73,9 @@ public:
 
 	int run_with_sock()
 	{
-		static const char* payload = "test";
-		static const auto payload_length = sizeof("test")-1;
-		char* buffer[200];
+		static const string payload = "GET /ping HTTP/1.1\nHost: localhost\r\n\n";
+		static const int expected_bytes = 120;
+		char* buffer[512];
 
 		int sock = 0;
 		{
@@ -88,8 +88,14 @@ public:
 			sock = *it;
 			m_sockets.erase(it);
 		}
-		send(sock, payload, payload_length, 0);
-		recv(sock, buffer, sizeof(buffer), 0);
+		send(sock, payload.c_str(), payload.size(), 0);
+		int received = 0, ret = 0;
+		do
+		{
+			ret = recv(sock, buffer, sizeof(buffer), 0);
+			received += ret;
+		}
+		while(ret > 0 && received < expected_bytes);
 		{
 			lock_guard<mutex> lock(m_mutex);
 			m_sockets.emplace_back(sock);
