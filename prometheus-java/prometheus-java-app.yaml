@@ -1,0 +1,19 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: prometheus-java-app
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: prometheus-java-app
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/path: "/prometheus"
+        prometheus.io/port: "8080"
+    spec:
+      containers:
+        - name: prometheus-java-app
+          image: luca3m/prometheus-java-app
+          imagePullPolicy: Always
