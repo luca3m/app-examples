@@ -5,8 +5,6 @@ metadata:
   labels:
     name: node-example-deployment
     app: demo
-  annotations:
-    prometheus.io/scrape: "true"
 spec:
   replicas: 1
   # selector identifies the set of Pods that this
@@ -20,7 +18,7 @@ spec:
     spec:
       containers:
         - name: node-example
-          image: luca3m/node-example:latest
+          image: luca3m/node-example:prometheus
           ports:
             - containerPort: 3000
               name: node-example
@@ -45,3 +43,4 @@ spec:
         app: demo
       annotations:
         prometheus.io/scrape: "true"
+        prometheus.io/port: "3000"

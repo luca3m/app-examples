@@ -1,5 +1,4 @@
 FROM node:alpine
-LABEL io.prometheus.scrape true
 WORKDIR /app
 ADD package.json ./
 RUN npm install
