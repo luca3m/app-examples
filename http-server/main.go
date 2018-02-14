@@ -16,6 +16,7 @@ func main() {
 	})
 	http.HandleFunc("/hello/", func(w http.ResponseWriter, r *http.Request) {
 		name := r.URL.Path[len("/hello/"):]
+		time.Sleep(100 * time.Millisecond)
 		w.Write([]byte("hello " + name))
 	})
 	log.Fatal(http.ListenAndServe(":8080", nil))
